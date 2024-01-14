@@ -1,38 +1,94 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.small-nav {
+  --nav-width: 90px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.avg-nav {
+  --nav-width: 200px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--nav-width);
+  height: 100vh;
+  background: #111;
+  transition: 0.5s;
+}
+
+nav ul {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  flex-direction: column;
+  list-style: none;
+  overflow: hidden;
+  gap: 10px;
+  padding: 10px;
+}
+
+nav ul li {
+  width: 100%;
+  padding: 24px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 12px;
+  font-size: 18px;
+  transition: 0.1s;
 }
 
-.App-link {
-  color: #61dafb;
+nav ul li a {
+  text-decoration: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+nav ul li:hover {
+  opacity: 0.5;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: var(--nav-width);
+  background: #111;
+  transition: 0.5s;
+}
+
+.bottom li {
+  width: 100%;
+  padding: 25px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  font-size: 18px;
+  transition: 0.1s;
+}
+
+.bottom li:hover {
+  opacity: 0.5;
+}
+
+.container {
+  position: relative;
+  width: calc(100% - var(--nav-width));
+  background: #fff;
+  transition: 0.5s;
+  left: var(--nav-width);
 }
