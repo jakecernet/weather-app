@@ -4,6 +4,8 @@
     align-items: center;
     justify-content: space-evenly;
     height: 100vh;
+    padding: 0 2rem;
+    gap: 2rem;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)) no-repeat center center fixed;
 }
 
@@ -63,7 +65,7 @@
     width: 100%;
 }
 
-.other div{
+.other div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -74,4 +76,25 @@
     font-size: 2.2rem;
     font-weight: 320;
     margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+
+    .display {
+        padding: 4rem 2rem;
+        overflow-y: scroll;
+        height: 100%;
+    }
+
+    .other {
+        font-size: 1.2rem;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .other-title {
+        margin-bottom: 0;
+        font-size: 1.8rem;
+    }
+
 }

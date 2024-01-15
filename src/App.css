@@ -92,3 +92,48 @@ nav ul li:hover {
   transition: 0.3s;
   left: var(--nav-width);
 }
+
+@media screen and (max-width: 768px) {
+  .small-nav {
+    --nav-width: 100%;
+  }
+
+  .avg-nav {
+    --nav-width: 100%;
+  }
+
+  nav {
+    width: var(--nav-width);
+    bottom: 0;
+    left: 0;
+    top: auto;
+    position: fixed;
+    transition: 0.3s;
+    height: fit-content;
+    z-index: 1;
+  }
+
+  nav ul {
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 0;
+    padding: 20px 0;
+  }
+
+  nav ul li {
+    padding: 12px;
+  }
+
+  .bottom {
+    display: none;
+  }
+
+  .container {
+    width: 100%;
+    left: 0;
+    bottom: 80px;
+    transition: 0.3s;
+  }
+
+}
