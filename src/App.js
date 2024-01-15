@@ -6,7 +6,7 @@ import Feedback from "./feedback/feedback";
 import Settings from "./settings/settings";
 
 function App() {
-	let navClosed = false;
+	let navClosed = true;
 
 	let [navbar, setNavClosed] = useState(navClosed);
 
@@ -30,15 +30,15 @@ function App() {
 						<i className="fas fa-user"></i>
 						{navbar ? null : <a>Napoved</a>}
 					</li>
-					<li onClick={() => setPage("feedback")}>
-						<i className="fas fa-envelope"></i>
-						{navbar ? null : <a>Vaše mnenje</a>}
+					<li onClick={() => setPage("settings")}>
+						<i className="fas fa-cog"></i>
+						{navbar ? null : <p>Nastavitve</p>}
 					</li>
 				</ul>
 				<div className="bottom">
-					<li className="button" onClick={() => setPage("settings")}>
-						<i className="fas fa-cog"></i>
-						{navbar ? null : <p>Nastavitve</p>}
+					<li className="button" onClick={() => setPage("feedback")}>
+						<i className="fas fa-envelope"></i>
+						{navbar ? null : <a>Vaše mnenje</a>}
 					</li>
 					<li className="button" onClick={toggleNav}>
 						<i className="fas fa-bars"></i>

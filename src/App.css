@@ -21,7 +21,7 @@ nav {
   width: var(--nav-width);
   height: 100vh;
   background: #111;
-  transition: 0.5s;
+  transition: 0.3s;
 }
 
 nav ul {
@@ -89,6 +89,6 @@ nav ul li:hover {
   position: relative;
   width: calc(100% - var(--nav-width));
   background: #fff;
-  transition: 0.5s;
+  transition: 0.3s;
   left: var(--nav-width);
 }
