@@ -11,7 +11,7 @@ function Current() {
 				const apiKey = "&key=" + key.name;
 				const response = await fetch(
 					"https://api.weatherapi.com/v1/current.json?q=" +
-						"Sydney" +
+						localStorage.getItem("city") +
 						apiKey
 				);
 				const data = await response.json();

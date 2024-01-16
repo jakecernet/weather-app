@@ -1,0 +1,102 @@
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+.settings {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    height: 100vh;
+    padding: 0 2rem;
+    gap: 2rem;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)) no-repeat center center fixed;
+}
+
+.settings h1 {
+    color: #fff;
+    font-size: 2.2rem;
+    font-weight: 300;
+}
+
+.city {
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 300;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.city a {
+    font-size: 1.8rem;
+    font-weight: 250;
+}
+
+.city p {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.city ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.4rem;
+    background: rgba(0, 0, 0, 0.404);
+    border-radius: 2px;
+    overflow-y: scroll;
+    height: 300px;
+}
+
+.city ul li {
+    font-weight: 300;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    width: 100%;
+    padding: 0.5rem;
+}
+
+.city ul li:hover {
+    background-color: rgba(0, 0, 0, 0.404);
+    cursor: pointer;
+}
+
+.city button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 300;
+    transition: all 0.3s ease;
+}
+
+.city button:hover {
+    cursor: pointer;
+    color: #fff;
+}
+
+.city form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+}
+
+.city form input {
+    background: rgba(0, 0, 0, 0.404);
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 300;
+    padding: 0.5rem;
+    border-radius: 2px;
+    width: 100%;
+}
+
+.city form input:focus {
+    outline: none;
+}

@@ -30,7 +30,28 @@ function Forecast() {
 		return null;
 	}
 
-	return <div className="display"></div>;
+	return <div className="display">
+		<div className="days">
+			<div className="day">
+				<a>{data.forecast.forecastday[0].date}</a>
+				<img src={data.forecast.forecastday[0].day.condition.icon} alt={data.forecast.forecastday[0].day.condition.text} />
+				<a>{data.forecast.forecastday[0].day.avgtemp_c}°C</a>
+				<p>{data.forecast.forecastday[0].day.avgtemp_f}°F</p>
+			</div>
+			<div className="day">
+				<a>{data.forecast.forecastday[1].date}</a>
+				<img src={data.forecast.forecastday[1].day.condition.icon} alt={data.forecast.forecastday[1].day.condition.text} />
+				<a>{data.forecast.forecastday[1].day.avgtemp_c}°C</a>
+				<p>{data.forecast.forecastday[1].day.avgtemp_f}°F</p>
+			</div>
+			<div className="day">
+				<a>{data.forecast.forecastday[2].date}</a>
+				<img src={data.forecast.forecastday[2].day.condition.icon} alt={data.forecast.forecastday[2].day.condition.text} />
+				<a>{data.forecast.forecastday[2].day.avgtemp_c}°C</a>
+				<p>{data.forecast.forecastday[2].day.avgtemp_f}°F</p>
+			</div>
+		</div>
+	</div>;
 }
 
 export default Forecast;
