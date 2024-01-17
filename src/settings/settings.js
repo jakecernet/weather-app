@@ -32,9 +32,22 @@ function Settings() {
 			console.log(city);
 			localStorage.setItem(city, city);
 			alert("Mesto je bilo uspešno shranjeno!");
+			window.location.reload();
 		}
 	}
 
+	function getCitiesFromLocalStorage() {
+		const cities = [];
+		for (let i = 0; i < localStorage.length; i++) {
+			if (localStorage.key(i) !== "city") {
+				const key = localStorage.key(i);
+				cities.push(localStorage.getItem(key));
+			} else {
+				continue;
+			}
+		}
+		return cities;
+	}
 	function clearList(event) {
 		event.preventDefault();
 		localStorage.clear();
@@ -64,19 +77,6 @@ function Settings() {
 			</div>
 		</div>
 	);
-}
-
-function getCitiesFromLocalStorage() {
-	const cities = [];
-	for (let i = 0; i < localStorage.length; i++) {
-		if (localStorage.key(i) != "city") {
-			const key = localStorage.key(i);
-			cities.push(localStorage.getItem(key));
-		} else {
-			continue;
-		}
-	}
-	return cities;
 }
 
 export default Settings;

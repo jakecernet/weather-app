@@ -1,0 +1,46 @@
+.displayForecast {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 40px;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)) no-repeat center center fixed;
+}
+
+.displayForecast a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 2em;
+    font-weight: 300;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.days {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 40px;
+    padding: 20px;
+    border-radius: 2px;
+    width: 100%;
+}
+
+.days .day {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-weight: 300;
+    font-size: 1.2em;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 2px;
+    padding: 20px;
+    width: 100%;
+}

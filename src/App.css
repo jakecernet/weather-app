@@ -88,9 +88,10 @@ nav ul li:hover {
 .container {
   position: relative;
   width: calc(100% - var(--nav-width));
-  background: #fff;
+  background: linear-gradient(90deg, #00000054, #33333349);
   transition: 0.3s;
   left: var(--nav-width);
+  height: 100vh;
 }
 
 @media screen and (max-width: 768px) {
