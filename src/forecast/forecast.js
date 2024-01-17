@@ -55,6 +55,18 @@ function Forecast() {
 		return null;
 	}
 
+	const renderHourly = (day) => {
+		return data.forecast.forecastday[day].hour.map((hour) => {
+			return (
+				<div className="hour">
+					<a className="hourDisplay">{hour.time.slice(-5)}</a>
+					<a>{hour.temp_c}°C</a>
+					<img src={hour.condition.icon} alt={hour.condition.text} />
+				</div>
+			);
+		});
+	};
+
 	return (
 		<div className="displayForecast">
 			<a>Napoved za {data.location.name}:</a>
@@ -67,6 +79,20 @@ function Forecast() {
 					/>
 					<a>{data.forecast.forecastday[0].day.avgtemp_c}°C</a>
 					<p>{data.forecast.forecastday[0].day.avgtemp_f}°F</p>
+					<div className="astro">
+						<a>
+							Sončni vzhod ob:{" "}
+							{data.forecast.forecastday[0].astro.sunrise}
+						</a>
+						<a>
+							Sončni zahod ob:{" "}
+							{data.forecast.forecastday[0].astro.sunset}
+						</a>
+					</div>
+					<div className="hourly">
+						<a>Vreme po urah:</a>
+						<div className="hours">{renderHourly(0)}</div>
+					</div>
 				</div>
 				<div className="day">
 					<a>{getDayName(data.forecast.forecastday[1].date)}</a>
@@ -76,6 +102,20 @@ function Forecast() {
 					/>
 					<a>{data.forecast.forecastday[1].day.avgtemp_c}°C</a>
 					<p>{data.forecast.forecastday[1].day.avgtemp_f}°F</p>
+					<div className="astro">
+						<a>
+							Sončni vzhod ob:{" "}
+							{data.forecast.forecastday[1].astro.sunrise}
+						</a>
+						<a>
+							Sončni zahod ob:{" "}
+							{data.forecast.forecastday[1].astro.sunset}
+						</a>
+					</div>
+					<div className="hourly">
+						<a>Vreme po urah:</a>
+						<div className="hours">{renderHourly(1)}</div>
+					</div>
 				</div>
 				<div className="day">
 					<a>{getDayName(data.forecast.forecastday[2].date)}</a>
@@ -85,6 +125,20 @@ function Forecast() {
 					/>
 					<a>{data.forecast.forecastday[2].day.avgtemp_c}°C</a>
 					<p>{data.forecast.forecastday[2].day.avgtemp_f}°F</p>
+					<div className="astro">
+						<a>
+							Sončni vzhod ob:{" "}
+							{data.forecast.forecastday[2].astro.sunrise}
+						</a>
+						<a>
+							Sončni zahod ob:{" "}
+							{data.forecast.forecastday[2].astro.sunset}
+						</a>
+					</div>
+					<div className="hourly">
+						<a>Vreme po urah:</a>
+						<div className="hours">{renderHourly(2)}</div>
+					</div>
 				</div>
 			</div>
 		</div>
