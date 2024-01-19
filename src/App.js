@@ -5,6 +5,9 @@ import Forecast from "./forecast/forecast";
 import Feedback from "./feedback/feedback";
 import Settings from "./settings/settings";
 
+import Day from "./images/day.jpg";
+import Night from "./images/night.jpg";
+
 function App() {
 	let navClosed = true;
 
@@ -18,8 +21,18 @@ function App() {
 
 	const [page, setPage] = useState("home");
 
+	const setBackground = () => {
+		const body = document.body;
+		const currentHour = new Date().getHours();
+		if (currentHour >= 6 && currentHour < 18) {
+			body.style.backgroundImage = `url(${Day})`;
+		} else {
+			body.style.backgroundImage = `url(${Night})`;
+		}
+	};
+
 	return (
-		<div>
+		<div onLoad={setBackground()}>
 			<nav>
 				<ul>
 					<li onClick={() => setPage("home")}>
