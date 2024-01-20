@@ -10,7 +10,6 @@
     height: 100vh;
     padding: 0 2rem;
     gap: 2rem;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)) no-repeat center center fixed;
 }
 
 .settings h1 {

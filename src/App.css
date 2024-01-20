@@ -88,11 +88,11 @@ nav ul li:hover {
 .container {
   position: relative;
   width: calc(100% - var(--nav-width));
-  background: linear-gradient(90deg, #00000093, #33333349);
   backdrop-filter: blur(2px);
   transition: 0.3s;
   left: var(--nav-width);
   height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)) no-repeat center center fixed;
 }
 
 @media screen and (max-width: 768px) {
@@ -132,10 +132,11 @@ nav ul li:hover {
   }
 
   .container {
+    height: calc(100% - 80px);
     width: 100%;
     left: 0;
-    bottom: 80px;
-    transition: 0.3s;
+    margin-bottom: 80px;
+    padding: 3rem 1rem;
   }
 
 }
