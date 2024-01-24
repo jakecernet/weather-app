@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import key from "./api.json";
 import "./App.css";
 import Current from "./current/current";
 import Forecast from "./forecast/forecast";
@@ -31,6 +32,33 @@ function App() {
 		}
 	};
 
+	const [data, setData] = useState(null);
+
+	useEffect(() => {
+		async function fetchData() {
+			try {
+				const apiKey = "&key=" + key.name;
+				const response = await fetch(
+					"https://api.weatherapi.com/v1/forecast.json?q=" +
+						localStorage.getItem("city") +
+						"&days=3" +
+						apiKey
+				);
+				const receivedData = await response.json();
+				setData(receivedData);
+				console.log(data);
+			} catch (error) {
+				console.log(error);
+			}
+		}
+
+		fetchData();
+	}, []);
+
+	if (!data) {
+		return null;
+	}
+
 	return (
 		<div onLoad={setBackground()}>
 			<nav>
@@ -60,8 +88,8 @@ function App() {
 				</div>
 			</nav>
 			<div className="container">
-				{page === "home" && <Current />}
-				{page === "forecast" && <Forecast />}
+				{page === "home" && <Current data={data} />}
+				{page === "forecast" && <Forecast data={data} />}
 				{page === "feedback" && <Feedback />}
 				{page === "settings" && <Settings />}
 			</div>

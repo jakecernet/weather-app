@@ -1,33 +1,9 @@
 import { useState, useEffect } from "react";
 import "./current.css";
-import key from "../api.json";
+import data from "../App";
 
-function Current() {
-	const [data, setData] = useState(null);
-
-	useEffect(() => {
-		async function fetchData() {
-			try {
-				const apiKey = "&key=" + key.name;
-				const response = await fetch(
-					"https://api.weatherapi.com/v1/current.json?q=" +
-						localStorage.getItem("city") +
-						apiKey
-				);
-				const data = await response.json();
-				setData(data);
-				console.log(data);
-			} catch (error) {
-				console.log(error);
-			}
-		}
-
-		fetchData();
-	}, []);
-
-	if (!data) {
-		return null;
-	}
+const Current = (data = {data}) => {
+	console.log(data);
 
 	return (
 		<div className="display">
@@ -48,26 +24,26 @@ function Current() {
 			</div>
 			<div className="other">
 				<div className="wind">
-					<a className="other-title">Veter</a>
+					<p className="other-title">Veter</p>
 					<a>{data.current.wind_kph} km/h</a>
 					<p>{data.current.wind_mph} mph</p>
 					<p>{data.current.wind_dir}</p>
 				</div>
 				<div className="humidity">
-					<a className="other-title">Vlažnost</a>
+					<p className="other-title">Vlažnost</p>
 					<a>{data.current.humidity}%</a>
 				</div>
 				<div className="precipitation">
-					<a className="other-title">Padavine</a>
+					<p className="other-title">Padavine</p>
 					<a>{data.current.precip_mm} mm</a>
 					<p>{data.current.precip_in} in</p>
 				</div>
 				<div className="uv">
-					<a className="other-title">UV indeks</a>
+					<p className="other-title">UV indeks</p>
 					<a>{data.current.uv}</a>
 				</div>
 				<div className="visibility">
-					<a className="other-title">Vidljivost</a>
+					<p className="other-title">Vidljivost</p>
 					<a>{data.current.vis_km} km</a>
 					<p>{data.current.vis_miles} milj/a</p>
 				</div>

@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import "./forecast.css";
-import key from "../api.json";
 
-function Forecast() {
-	const [data, setData] = useState(null);
+const Forecast = (data = { data }) => {
 	const [day, setDay] = useState(null);
 
 	function decodeDate(dateString) {
@@ -28,31 +26,6 @@ function Forecast() {
 		];
 		const dayName = new Date(date.year, date.month - 1, date.day).getDay();
 		return dayNames[dayName];
-	}
-
-	useEffect(() => {
-		async function fetchData() {
-			try {
-				const apiKey = "&key=" + key.name;
-				const response = await fetch(
-					"https://api.weatherapi.com/v1/forecast.json?q=" +
-						localStorage.getItem("city") +
-						"&days=3" +
-						apiKey
-				);
-				const data = await response.json();
-				setData(data);
-				console.log(data);
-			} catch (error) {
-				console.log(error);
-			}
-		}
-
-		fetchData();
-	}, []);
-
-	if (!data) {
-		return null;
 	}
 
 	const renderHourly = (day) => {
