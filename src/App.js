@@ -46,7 +46,7 @@ function App() {
 				);
 				const receivedData = await response.json();
 				setData(receivedData);
-				console.log(data);
+				console.log(receivedData);
 			} catch (error) {
 				console.log(error);
 			}

@@ -4,6 +4,12 @@ import "./forecast.css";
 const Forecast = (data = { data }) => {
 	const [day, setDay] = useState(null);
 
+	const [display, setDisplay] = useState(data.data);
+
+	if (!display) {
+		return null;
+	}
+
 	function decodeDate(dateString) {
 		const [year, month, day] = dateString.split("-");
 		return {
@@ -29,7 +35,7 @@ const Forecast = (data = { data }) => {
 	}
 
 	const renderHourly = (day) => {
-		return data.forecast.forecastday[day].hour.map((hour) => {
+		return display.forecast.forecastday[day].hour.map((hour) => {
 			return (
 				<div className="hour">
 					<a className="hourDisplay">{hour.time.slice(-5)}</a>
@@ -42,24 +48,24 @@ const Forecast = (data = { data }) => {
 
 	return (
 		<div className="displayForecast">
-			<a>Napoved za {data.location.name}:</a>
+			<a>Napoved za {display.location.name}:</a>
 			<div className="days">
 				<div className="day">
-					<a>{getDayName(data.forecast.forecastday[0].date)}</a>
+					<a>{getDayName(display.forecast.forecastday[0].date)}</a>
 					<img
-						src={data.forecast.forecastday[0].day.condition.icon}
-						alt={data.forecast.forecastday[0].day.condition.text}
+						src={display.forecast.forecastday[0].day.condition.icon}
+						alt={display.forecast.forecastday[0].day.condition.text}
 					/>
-					<a>{data.forecast.forecastday[0].day.avgtemp_c}°C</a>
-					<p>{data.forecast.forecastday[0].day.avgtemp_f}°F</p>
+					<a>{display.forecast.forecastday[0].day.avgtemp_c}°C</a>
+					<p>{display.forecast.forecastday[0].day.avgtemp_f}°F</p>
 					<div className="astro">
 						<a>
 							Sončni vzhod ob:{" "}
-							{data.forecast.forecastday[0].astro.sunrise}
+							{display.forecast.forecastday[0].astro.sunrise}
 						</a>
 						<a>
 							Sončni zahod ob:{" "}
-							{data.forecast.forecastday[0].astro.sunset}
+							{display.forecast.forecastday[0].astro.sunset}
 						</a>
 					</div>
 					<div className="hourly">
@@ -68,21 +74,21 @@ const Forecast = (data = { data }) => {
 					</div>
 				</div>
 				<div className="day">
-					<a>{getDayName(data.forecast.forecastday[1].date)}</a>
+					<a>{getDayName(display.forecast.forecastday[1].date)}</a>
 					<img
-						src={data.forecast.forecastday[1].day.condition.icon}
-						alt={data.forecast.forecastday[1].day.condition.text}
+						src={display.forecast.forecastday[1].day.condition.icon}
+						alt={display.forecast.forecastday[1].day.condition.text}
 					/>
-					<a>{data.forecast.forecastday[1].day.avgtemp_c}°C</a>
-					<p>{data.forecast.forecastday[1].day.avgtemp_f}°F</p>
+					<a>{display.forecast.forecastday[1].day.avgtemp_c}°C</a>
+					<p>{display.forecast.forecastday[1].day.avgtemp_f}°F</p>
 					<div className="astro">
 						<a>
 							Sončni vzhod ob:{" "}
-							{data.forecast.forecastday[1].astro.sunrise}
+							{display.forecast.forecastday[1].astro.sunrise}
 						</a>
 						<a>
 							Sončni zahod ob:{" "}
-							{data.forecast.forecastday[1].astro.sunset}
+							{display.forecast.forecastday[1].astro.sunset}
 						</a>
 					</div>
 					<div className="hourly">
@@ -91,21 +97,21 @@ const Forecast = (data = { data }) => {
 					</div>
 				</div>
 				<div className="day">
-					<a>{getDayName(data.forecast.forecastday[2].date)}</a>
+					<a>{getDayName(display.forecast.forecastday[2].date)}</a>
 					<img
-						src={data.forecast.forecastday[2].day.condition.icon}
-						alt={data.forecast.forecastday[2].day.condition.text}
+						src={display.forecast.forecastday[2].day.condition.icon}
+						alt={display.forecast.forecastday[2].day.condition.text}
 					/>
-					<a>{data.forecast.forecastday[2].day.avgtemp_c}°C</a>
-					<p>{data.forecast.forecastday[2].day.avgtemp_f}°F</p>
+					<a>{display.forecast.forecastday[2].day.avgtemp_c}°C</a>
+					<p>{display.forecast.forecastday[2].day.avgtemp_f}°F</p>
 					<div className="astro">
 						<a>
 							Sončni vzhod ob:{" "}
-							{data.forecast.forecastday[2].astro.sunrise}
+							{display.forecast.forecastday[2].astro.sunrise}
 						</a>
 						<a>
 							Sončni zahod ob:{" "}
-							{data.forecast.forecastday[2].astro.sunset}
+							{display.forecast.forecastday[2].astro.sunset}
 						</a>
 					</div>
 					<div className="hourly">
@@ -116,6 +122,6 @@ const Forecast = (data = { data }) => {
 			</div>
 		</div>
 	);
-}
+};
 
 export default Forecast;

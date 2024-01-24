@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import "./current.css";
 import data from "../App";
 
-const Current = (data = {data}) => {
-
+const Current = (data = { data }) => {
 	const [display, setDisplay] = useState(data.data);
+
 	if (!display) {
 		return null;
 	}
@@ -54,6 +54,6 @@ const Current = (data = {data}) => {
 			</div>
 		</div>
 	);
-}
+};
 
 export default Current;
