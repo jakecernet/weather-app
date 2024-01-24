@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import key from "./api.json";
+import api from "./api.json";
 import "./App.css";
 import Current from "./current/current";
 import Forecast from "./forecast/forecast";
@@ -9,7 +9,7 @@ import Settings from "./settings/settings";
 import Day from "./images/day.jpg";
 import Night from "./images/night.jpg";
 
-function App() {
+function App() {	
 	let navClosed = true;
 
 	let [navbar, setNavClosed] = useState(navClosed);
@@ -37,7 +37,7 @@ function App() {
 	useEffect(() => {
 		async function fetchData() {
 			try {
-				const apiKey = "&key=" + key.name;
+				const apiKey = "&key=" + api.name;
 				const response = await fetch(
 					"https://api.weatherapi.com/v1/forecast.json?q=" +
 						localStorage.getItem("city") +
