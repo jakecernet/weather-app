@@ -95,7 +95,7 @@ nav ul li:hover {
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)) no-repeat center center fixed;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
   .small-nav {
     --nav-width: 100%;
   }
@@ -136,7 +136,7 @@ nav ul li:hover {
     width: 100%;
     left: 0;
     margin-bottom: 80px;
-    padding: 3rem 1rem;
+    padding: 1rem 0.8rem;
   }
 
 }
