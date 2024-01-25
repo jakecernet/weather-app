@@ -10,6 +10,13 @@ import Settings from "./settings/settings";
 import Day from "./images/day.jpg";
 import Night from "./images/night.jpg";
 
+import home from "./buttons/home.svg";
+import today from "./buttons/today.svg";
+import forecast from "./buttons/forecast.svg";
+import settings from "./buttons/settings.svg";
+import feedback from "./buttons/feedback.svg";
+import menu from "./buttons/menu.svg";
+
 function App() {	
 	let navClosed = true;
 
@@ -65,29 +72,29 @@ function App() {
 			<nav>
 				<ul>
 					<li onClick={() => setPage("home")}>
-						<i className="fas fa-home"></i>
+						<img src={home} alt="home" />
 						{navbar ? null : <a>Trenutno</a>}
 					</li>
 					<li onClick={() => setPage("today")}>
-						<i className="fas fa-calendar"></i>
+						<img src={today} alt="today" />
 						{navbar ? null : <a>Danes</a>}
 					</li>
 					<li onClick={() => setPage("forecast")}>
-						<i className="fas fa-user"></i>
+						<img src={forecast} alt="forecast" />
 						{navbar ? null : <a>Napoved</a>}
 					</li>
 					<li onClick={() => setPage("settings")}>
-						<i className="fas fa-cog"></i>
+						<img src={settings} alt="settings" />
 						{navbar ? null : <p>Nastavitve</p>}
 					</li>
 				</ul>
 				<div className="bottom">
 					<li className="button" onClick={() => setPage("feedback")}>
-						<i className="fas fa-envelope"></i>
+						<img src={feedback} alt="feedback" />
 						{navbar ? null : <a>Vaše mnenje</a>}
 					</li>
 					<li className="button" onClick={toggleNav}>
-						<i className="fas fa-bars"></i>
+						<img src={menu} alt="menu" />
 						{navbar ? null : <p>Skrči</p>}
 					</li>
 				</div>

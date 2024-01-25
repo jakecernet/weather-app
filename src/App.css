@@ -50,6 +50,11 @@ nav ul li {
   transition: 0.1s;
 }
 
+nav ul li img {
+  width: 25px;
+  height: 25px;
+}
+
 nav ul li a {
   text-decoration: none;
 }
@@ -83,6 +88,11 @@ nav ul li:hover {
 
 .bottom li:hover {
   opacity: 0.5;
+}
+
+.bottom li img {
+  width: 25px;
+  height: 25px;
 }
 
 .container {
