@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import api from "./api.json";
 import "./App.css";
 import Current from "./current/current";
+import Today from "./today/today";
 import Forecast from "./forecast/forecast";
 import Feedback from "./feedback/feedback";
 import Settings from "./settings/settings";
@@ -67,6 +68,10 @@ function App() {
 						<i className="fas fa-home"></i>
 						{navbar ? null : <a>Trenutno</a>}
 					</li>
+					<li onClick={() => setPage("today")}>
+						<i className="fas fa-calendar"></i>
+						{navbar ? null : <a>Danes</a>}
+					</li>
 					<li onClick={() => setPage("forecast")}>
 						<i className="fas fa-user"></i>
 						{navbar ? null : <a>Napoved</a>}
@@ -89,6 +94,7 @@ function App() {
 			</nav>
 			<div className="container">
 				{page === "home" && <Current data={data} />}
+				{page === "today" && <Today data={data} />}
 				{page === "forecast" && <Forecast data={data} />}
 				{page === "feedback" && <Feedback />}
 				{page === "settings" && <Settings />}

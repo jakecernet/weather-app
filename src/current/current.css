@@ -20,28 +20,7 @@
     font-weight: 250;
 }
 
-.temp {
-    color: #fff;
-    font-size: 2rem;
-    font-weight: 300;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.temp a {
-    font-size: 3rem;
-    font-weight: 250;
-}
-
-.temp p {
-    font-size: 1.5rem;
-    font-weight: 300;
-}
-
-.condition {
+.temperatura {
     color: #fff;
     font-size: 2rem;
     font-weight: 300;
@@ -49,32 +28,13 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     gap: 1rem;
 }
 
-.other {
-    color: #fff;
-    font-size: 1.6rem;
-    font-weight: 300;
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 100%;
-}
-
-.other div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-.other-title {
-    font-size: 2.2rem;
-    font-weight: 320;
-    margin-bottom: 1rem;
+.tempertatura a {
+    font-size: 3rem;
+    font-weight: 250;
 }
 
 @media screen and (max-width: 768px) {
@@ -82,16 +42,4 @@
     .display {
         padding: 0 1rem;
     }
-
-    .other {
-        font-size: 1.2rem;
-        flex-direction: column;
-        gap: 2rem;
-    }
-
-    .other-title {
-        margin-bottom: 0;
-        font-size: 1.8rem;
-    }
-
 }
