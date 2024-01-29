@@ -8,47 +8,79 @@ const Today = (data = { data }) => {
 		return null;
 	}
 
+	const renderRemainingForecast = (currentHour) => {
+		return display.forecast.forecastday[0].hour.map((hour) => {
+			if (hour.time.slice(-5) > currentHour) {
+				return (
+					<div className="remainingHour">
+						<a>{hour.time.slice(-5)}</a>
+						<a>{hour.condition.text}</a>
+						<img
+							src={hour.condition.icon}
+							alt={hour.condition.text}
+						/>
+						<a>{hour.temp_c}°C</a>
+					</div>
+				);
+			}
+		});
+	};
+
 	return (
 		<div className="display">
-			<div className="location">
-				<a>{display.location.name},</a>
-				<p>{display.location.country}</p>
+			<div className="topLeft">
+				<div className="location">
+					<a>{display.location.name},</a>
+					<p>{display.location.country}</p>
+				</div>
+				<div className="date">
+					<p>{display.current.last_updated.slice(-5)}</p>
+				</div>
+				<div className="temp">
+					<a>{display.current.temp_c}°C</a>
+					<p>( {display.current.temp_f}°F )</p>
+				</div>
+				<div className="condition">
+					<img
+						src={display.current.condition.icon}
+						alt={display.current.condition.text}
+					/>
+					<a>{display.current.condition.text}</a>
+				</div>
 			</div>
-			<div className="temp">
-				<a>{display.current.temp_c}°C </a>
-				<p>( {display.current.temp_f}°F ) </p>
+			<div className="topRight">
+				<div className="remainingForecast">
+					{renderRemainingForecast(
+						display.current.last_updated.slice(-5)
+					)}
+				</div>
 			</div>
-			<div className="condition">
-				<img
-					src={display.current.condition.icon}
-					alt={display.current.condition.text}
-				/>
-				<a>{display.current.condition.text}</a>
-			</div>
-			<div className="other">
-				<div className="wind">
-					<p className="other-title">Veter</p>
-					<a>{display.current.wind_kph} km/h</a>
-					<p>{display.current.wind_mph} mph</p>
-					<p>{display.current.wind_dir}</p>
-				</div>
-				<div className="humidity">
-					<p className="other-title">Vlažnost</p>
-					<a>{display.current.humidity}%</a>
-				</div>
-				<div className="precipitation">
-					<p className="other-title">Padavine</p>
-					<a>{display.current.precip_mm} mm</a>
-					<p>{display.current.precip_in} in</p>
-				</div>
-				<div className="uv">
-					<p className="other-title">UV indeks</p>
-					<a>{display.current.uv}</a>
-				</div>
-				<div className="visibility">
-					<p className="other-title">Vidljivost</p>
-					<a>{display.current.vis_km} km</a>
-					<p>{display.current.vis_miles} milj/a</p>
+			<div className="bottomLeft">
+				<div className="astro">
+					<div className="sunrise">
+						<a>
+							Sončni vzhod ob:{" "}
+							{display.forecast.forecastday[0].astro.sunrise}
+						</a>
+					</div>
+					<div className="sunset">
+						<a>
+							Sončni zahod ob:{" "}
+							{display.forecast.forecastday[0].astro.sunset}
+						</a>
+					</div>
+					<div className="moonphase">
+						<a>
+							Lunina mena:{" "}
+							{display.forecast.forecastday[0].astro.moon_phase}
+						</a>
+					</div>
+					<div className="sunPath">
+						<a>
+							Položaj sonca:{" "}
+							{display.forecast.forecastday[0].astro.sunrise}
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>

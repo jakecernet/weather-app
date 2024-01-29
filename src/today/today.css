@@ -1,11 +1,38 @@
 .display {
+    display: grid;
+    grid-template-areas:
+        "topLeft topRight"
+        "bottomLeft bottomRight";
+    gap: 2rem;
+    padding: 4rem 0;
+}
+
+.topLeft {
+    grid-area: topLeft;
+}
+
+.topRight {
+    grid-area: topRight;
+}
+
+.bottomLeft {
+    grid-area: bottomLeft;
+}
+
+.bottomRight {
+    grid-area: bottomRight;
+}
+
+.topLeft,
+.topRight,
+.bottomLeft,
+.bottomRight {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: space-evenly;
-    height: 100vh;
-    padding: 0 2rem;
-    gap: 2rem;
+    align-items: center;
+    gap: 1rem;
+    color: #fff;
 }
 
 .location {
@@ -52,46 +79,53 @@
     gap: 1rem;
 }
 
-.other {
+/* Zgoraj desno */
+
+.remainingForecast {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1rem;
     color: #fff;
-    font-size: 1.6rem;
+    overflow-x: scroll;
+    padding: 1rem;
+    width: 40vw;
+}
+
+.remainingForecast .remainingHour {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1rem;
+    color: #fff;
+    background: rgba(20, 20, 20, 0.5);
+    padding: 1rem;
+}
+
+.remainingForecast .remainingHour a {
+    font-size: 1.2rem;
+    font-weight: 250;
+}
+
+.remainingForecast .remainingHour p {
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.remainingForecast .remainingHour img {
+    width: 80px;
+    height: 80px;
+}
+
+.astro {
+    color: #fff;
+    font-size: 2rem;
     font-weight: 300;
     text-align: center;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 100%;
-}
-
-.other div {
-    display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
-}
-
-.other-title {
-    font-size: 2.2rem;
-    font-weight: 320;
-    margin-bottom: 1rem;
-}
-
-@media screen and (max-width: 768px) {
-
-    .display {
-        padding: 0 1rem;
-    }
-
-    .other {
-        font-size: 1.2rem;
-        flex-direction: column;
-        gap: 2rem;
-    }
-
-    .other-title {
-        margin-bottom: 0;
-        font-size: 1.8rem;
-    }
-
+    justify-content: space-between;
 }

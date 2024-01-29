@@ -17,7 +17,7 @@ import settings from "./buttons/settings.svg";
 import feedback from "./buttons/feedback.svg";
 import menu from "./buttons/menu.svg";
 
-function App() {	
+function App() {
 	let navClosed = true;
 
 	let [navbar, setNavClosed] = useState(navClosed);

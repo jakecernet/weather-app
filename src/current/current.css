@@ -36,6 +36,31 @@
     font-weight: 250;
 }
 
+.other {
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 300;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.other div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.other-title {
+    font-size: 2.2rem;
+    font-weight: 320;
+    margin-bottom: 1rem;
+}
+
 @media screen and (max-width: 768px) {
     .displayCurrent {
         padding: 0 1rem;
