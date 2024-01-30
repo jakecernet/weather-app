@@ -33,11 +33,15 @@ function App() {
 	const setBackground = () => {
 		const body = document.body;
 		const currentHour = new Date().getHours();
-		if (currentHour >= 6 && currentHour < 18) {
+		if (currentHour >= 6 && currentHour < 19) {
 			body.style.backgroundImage = `url(${Day})`;
 		} else {
 			body.style.backgroundImage = `url(${Night})`;
 		}
+		body.style.backgroundSize = "cover";
+		body.style.backgroundPosition = "center";
+		body.style.backgroundRepeat = "no-repeat";
+		body.style.backgroundAttachment = "fixed";
 	};
 
 	const [data, setData] = useState(null);

@@ -102,7 +102,7 @@ nav ul li:hover {
   transition: 0.3s;
   left: var(--nav-width);
   height: 100vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)) no-repeat center center fixed;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.411)) no-repeat center center fixed;
 }
 
 @media screen and (max-width: 1000px) {

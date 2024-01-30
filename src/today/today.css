@@ -1,38 +1,21 @@
 .display {
-    display: grid;
-    grid-template-areas:
-        "topLeft topRight"
-        "bottomLeft bottomRight";
-    gap: 2rem;
-    padding: 4rem 0;
-}
-
-.topLeft {
-    grid-area: topLeft;
-}
-
-.topRight {
-    grid-area: topRight;
-}
-
-.bottomLeft {
-    grid-area: bottomLeft;
-}
-
-.bottomRight {
-    grid-area: bottomRight;
-}
-
-.topLeft,
-.topRight,
-.bottomLeft,
-.bottomRight {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 4rem 0;
+    width: calc(100vw - var(--nav-width));
+}
+
+.top{
+    display: flex;
+    flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    gap: 1rem;
-    color: #fff;
+    gap: 2rem;
+    width: 100%;
+    padding: 0 2rem;
 }
 
 .location {
@@ -79,18 +62,16 @@
     gap: 1rem;
 }
 
-/* Zgoraj desno */
-
 .remainingForecast {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    gap: 1rem;
+    gap: 0.2rem;
     color: #fff;
     overflow-x: scroll;
-    padding: 1rem;
-    width: 40vw;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
 }
 
 .remainingForecast .remainingHour {
@@ -102,16 +83,13 @@
     color: #fff;
     background: rgba(20, 20, 20, 0.5);
     padding: 1rem;
+    border-radius: 10px;
+    scroll-snap-align: start;
 }
 
 .remainingForecast .remainingHour a {
     font-size: 1.2rem;
     font-weight: 250;
-}
-
-.remainingForecast .remainingHour p {
-    font-size: 1.5rem;
-    font-weight: 300;
 }
 
 .remainingForecast .remainingHour img {
@@ -121,7 +99,7 @@
 
 .astro {
     color: #fff;
-    font-size: 2rem;
+    font-size: 1rem;
     font-weight: 300;
     text-align: center;
     display: flex;

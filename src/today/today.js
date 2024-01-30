@@ -28,27 +28,24 @@ const Today = (data = { data }) => {
 
 	return (
 		<div className="display">
-			<div className="topLeft">
-				<div className="location">
-					<a>{display.location.name},</a>
-					<p>{display.location.country}</p>
+			<div className="top">
+				<div className="topLeft">
+					<div className="location">
+						<a>{display.location.name},</a>
+						<p>{display.location.country}</p>
+					</div>
+					<div className="temp">
+						<a>{display.current.temp_c}°C</a>
+						<p>( {display.current.temp_f}°F )</p>
+					</div>
+					<div className="condition">
+						<img
+							src={display.current.condition.icon}
+							alt={display.current.condition.text}
+						/>
+						<a>{display.current.condition.text}</a>
+					</div>
 				</div>
-				<div className="date">
-					<p>{display.current.last_updated.slice(-5)}</p>
-				</div>
-				<div className="temp">
-					<a>{display.current.temp_c}°C</a>
-					<p>( {display.current.temp_f}°F )</p>
-				</div>
-				<div className="condition">
-					<img
-						src={display.current.condition.icon}
-						alt={display.current.condition.text}
-					/>
-					<a>{display.current.condition.text}</a>
-				</div>
-			</div>
-			<div className="topRight">
 				<div className="remainingForecast">
 					{renderRemainingForecast(
 						display.current.last_updated.slice(-5)
