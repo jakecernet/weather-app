@@ -31,6 +31,7 @@ function Settings() {
 		) {
 			console.log(city);
 			localStorage.setItem(city, city);
+			localStorage.setItem("city", city);
 			alert("Mesto je bilo uspešno shranjeno!");
 			window.location.reload();
 		}

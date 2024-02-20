@@ -4,15 +4,33 @@ import "./today.css";
 const Today = (data = { data }) => {
 	const [display, setDisplay] = useState(data.data);
 
-	if (!display) {
-		return null;
-	}
+	useEffect(() => {
+		setDisplay(data.data);
+	}, [data]);
+
+	const setMain = (hour) => {
+		setDisplay({
+			...display,
+			current: {
+				...display.current,
+				temp_c: hour.temp_c,
+				temp_f: "N/A ",
+				condition: {
+					...display.current.condition,
+					text: hour.condition.text,
+					icon: hour.condition.icon,
+				},
+			},
+		});
+	};
 
 	const renderRemainingForecast = (currentHour) => {
 		return display.forecast.forecastday[0].hour.map((hour) => {
 			if (hour.time.slice(-5) > currentHour) {
 				return (
-					<div className="remainingHour">
+					<div
+						className="remainingHour"
+						onClick={() => setMain(hour)}>
 						<a>{hour.time.slice(-5)}</a>
 						<a>{hour.condition.text}</a>
 						<img
@@ -29,8 +47,9 @@ const Today = (data = { data }) => {
 	return (
 		<div className="display">
 			<div>
+				<h1>Danes:</h1>
 				<div className="location">
-					<a>{display.location.name},</a>
+					<a>{display.location.name}</a>
 					<p>{display.location.country}</p>
 				</div>
 				<div className="temp">
@@ -58,9 +77,9 @@ const Today = (data = { data }) => {
 			<div className="remainingForecast">
 				<a>Preostanek dneva:</a>
 				<div className="scrollbar">
-				{renderRemainingForecast(
-					display.current.last_updated.slice(-5)
-				)}
+					{renderRemainingForecast(
+						display.current.last_updated.slice(-5)
+					)}
 				</div>
 			</div>
 		</div>

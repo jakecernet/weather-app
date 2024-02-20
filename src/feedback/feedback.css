@@ -1,0 +1,16 @@
+.feedback {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    height: 100vh;
+    padding: 0 2rem;
+    gap: 1rem;
+}
+
+.feedback h1 {
+    color: #fff;
+    font-size: 2.4rem;
+    font-weight: 300;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
