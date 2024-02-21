@@ -15,7 +15,7 @@ function Feedback() {
 			<h1>Feedback</h1>
 			<p>
 				If you like the app, please leave me a star or follow me on
-				GitHub
+				GitHub.
 			</p>
 			<p>
 				My GitHub:{" "}
