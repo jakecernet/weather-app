@@ -2,10 +2,9 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: space-evenly;
     height: 100vh;
     padding: 0 2rem;
-    gap: 1rem;
+    gap: 3rem;
 }
 
 .feedback h1 {
@@ -13,4 +12,72 @@
     font-size: 2.4rem;
     font-weight: 300;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.feedback p {
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 300;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.feedback a {
+    color: #c0c0c0;
+    font-size: 1.6rem;
+    font-weight: 320;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+}
+
+.survey {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+}
+
+.survey h2 {
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 300;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.survey ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 1rem;
+}
+
+.survey ul li {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: none;
+}
+
+.survey ul li img {
+    filter: invert(1);
+    padding: 0.5rem;
+}
+
+#star2:hover~li img,
+#star3:hover~li img,
+#star4:hover~li img,
+#star5:hover~li img {
+    filter: invert(86%) sepia(93%) saturate(3275%) hue-rotate(1deg) brightness(104%) contrast(101%);
+    scale: 1.2;
+}
+
+#star1:hover,
+#star2:hover,
+#star3:hover,
+#star4:hover,
+#star5:hover {
+    filter: invert(86%) sepia(93%) saturate(3275%) hue-rotate(1deg) brightness(104%) contrast(101%);
+    scale: 1.2;
+    cursor: pointer;
 }
