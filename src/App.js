@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
+
 import api from "./api.json";
 import "./App.css";
 import Current from "./current/current";
@@ -18,9 +19,8 @@ import feedback from "./buttons/feedback.svg";
 import menu from "./buttons/menu.svg";
 
 function App() {
-	let navClosed = true;
 
-	let [navbar, setNavClosed] = useState(navClosed);
+	const [navbar, setNavClosed] = useState(true);
 
 	function toggleNav() {
 		setNavClosed(!navbar);
@@ -49,10 +49,25 @@ function App() {
 	useEffect(() => {
 		async function fetchData() {
 			try {
+				const myip = await fetch("https://api.ipify.org?format=json");
+				const ip = await myip.json();
+				const mylocation = await fetch(
+					"https://ipapi.co/" + ip.ip + "/json/"
+				);
+				const location = await mylocation.json();
+				const city = location.city;
+				console.log(city);
+
+				if(!localStorage.getItem("city")){
+					localStorage.setItem("city", city);
+				}
+				const output_city = localStorage.getItem("city");
+
+
 				const apiKey = "&key=" + api.name;
 				const response = await fetch(
 					"https://api.weatherapi.com/v1/forecast.json?q=" +
-						localStorage.getItem("city") +
+						output_city +
 						"&days=3" +
 						apiKey
 				);
