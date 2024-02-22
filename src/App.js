@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 import api from "./api.json";
 import "./App.css";
@@ -19,7 +19,6 @@ import feedback from "./buttons/feedback.svg";
 import menu from "./buttons/menu.svg";
 
 function App() {
-
 	const [navbar, setNavClosed] = useState(true);
 
 	function toggleNav() {
@@ -46,24 +45,12 @@ function App() {
 
 	const [data, setData] = useState(null);
 
+	const output_city = localStorage.getItem("city");
+	console.log(output_city);
+
 	useEffect(() => {
 		async function fetchData() {
 			try {
-				const myip = await fetch("https://api.ipify.org?format=json");
-				const ip = await myip.json();
-				const mylocation = await fetch(
-					"https://ipapi.co/" + ip.ip + "/json/"
-				);
-				const location = await mylocation.json();
-				const city = location.city;
-				console.log(city);
-
-				if(!localStorage.getItem("city")){
-					localStorage.setItem("city", city);
-				}
-				const output_city = localStorage.getItem("city");
-
-
 				const apiKey = "&key=" + api.name;
 				const response = await fetch(
 					"https://api.weatherapi.com/v1/forecast.json?q=" +
@@ -80,11 +67,31 @@ function App() {
 		}
 
 		fetchData();
-	}, []);
+	}, [output_city]);
+
+	async function fetchCity() {
+		if (output_city == null) {
+			const myip = await fetch("https://api.ipify.org?format=json");
+			const ip = await myip.json();
+			const mylocation = await fetch(
+				"https://ipapi.co/" + ip.ip + "/json/"
+			);
+			const location = await mylocation.json();
+			const city = location.city;
+
+			if (localStorage.getItem("city") == null) {
+				localStorage.setItem("city", city);
+			}
+
+			localStorage.setItem(city, city);
+		}
+	}
 
 	if (!data) {
-		return null;
+		return <div>Loading...</div>;
 	}
+
+	fetchCity();
 
 	return (
 		<div onLoad={setBackground()}>
