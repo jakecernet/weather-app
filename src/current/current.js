@@ -118,19 +118,26 @@ const Current = (data = { data }) => {
 
 	return (
 		<div className="displayCurrent">
-			<div className="location">
-				<a>{display.location.name},</a>
-				<p>{display.location.country}</p>
-			</div>
-			<div className="temperatura">
-				<a>{display.current.temp_c}°C,</a>
-				<p>Občutek kot {display.current.feelslike_c}°C</p>
-				<div className="condition">
-					<img
-						src={display.current.condition.icon}
-						alt={display.current.condition.text}
-					/>
-					<a>{translateCondition(display.current.condition.text)}</a>
+			<div className="basic">
+				<div className="location">
+					<a>{display.location.name},</a>
+					<p>{display.location.country}</p>
+				</div>
+				<div className="temperatura">
+					<a>
+						{display.current.temp_c}°C{" "}
+						<a>({display.current.temp_f}°F)</a>
+					</a>
+					<p>Občutek kot {display.current.feelslike_c}°C</p>
+					<div className="condition">
+						<img
+							src={display.current.condition.icon}
+							alt={display.current.condition.text}
+						/>
+						<a>
+							{translateCondition(display.current.condition.text)}
+						</a>
+					</div>
 				</div>
 			</div>
 			<div className="other">
@@ -140,6 +147,12 @@ const Current = (data = { data }) => {
 				</a>
 				<a>{display.current.humidity}% vlažnost</a>
 				<a>Vidljivost: {display.current.vis_km} km</a>
+			</div>
+			<div className="lastUpdated">
+				<p>
+					Zadnja posodobitev:{" "}
+					{display.current.last_updated.split(" ")[1]}
+				</p>
 			</div>
 		</div>
 	);

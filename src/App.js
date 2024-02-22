@@ -7,6 +7,7 @@ import Today from "./today/today";
 import Forecast from "./forecast/forecast";
 import Feedback from "./feedback/feedback";
 import Settings from "./settings/settings";
+import Loading from "./loading/loading";
 
 import Day from "./images/day.jpg";
 import Night from "./images/night.jpg";
@@ -88,7 +89,7 @@ function App() {
 	}
 
 	if (!data) {
-		return <div>Loading...</div>;
+		return <div>{<Loading />}</div>;
 	}
 
 	fetchCity();

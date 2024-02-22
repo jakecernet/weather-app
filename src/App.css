@@ -69,7 +69,7 @@ nav ul li:hover {
   left: 0;
   width: var(--nav-width);
   background: #111;
-  transition: 0.3s;
+  transition: 0.2s;
 }
 
 .bottom li {
@@ -83,7 +83,7 @@ nav ul li:hover {
   align-items: center;
   gap: 12px;
   font-size: 18px;
-  transition: 0.1s;
+  transition: 0.2s;
 }
 
 .bottom li:hover {
@@ -99,7 +99,7 @@ nav ul li:hover {
   position: relative;
   width: calc(100% - var(--nav-width));
   backdrop-filter: blur(2px);
-  transition: 0.3s;
+  transition: 0.2s;
   left: var(--nav-width);
   height: 100vh;
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.411)) no-repeat center center fixed;
