@@ -2,13 +2,13 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     gap: 20px;
-    padding: 80px;
+    padding: 20px;
     height: 100%;
 }
 
-.displayForecast a {
+.displayForecast .a-text {
     text-decoration: none;
     color: #fff;
     font-size: 2em;
@@ -19,12 +19,12 @@
 .days {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
     gap: 20px;
     padding: 0;
-    border-radius: 2px;
+    border-radius: 0;
     width: 100%;
 }
 
@@ -33,7 +33,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     background: rgba(20, 20, 20, 0.5);
     color: #fff;
@@ -41,8 +40,7 @@
     font-size: 1.2em;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     border-radius: 2px;
-    padding: 20px;
-    width: 100%;
+    padding: 20px 30px;
 }
 
 .day .astro {
@@ -51,12 +49,11 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
-    padding: 10px;
     border-radius: 2px;
     width: 100%;
 }
 
-.day .astro a {
+.day .astro .a-text {
     text-decoration: none;
     color: #fff;
     font-size: 1.2em;
@@ -70,8 +67,7 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: nowrap;
-    gap: 40px;
-    padding: 20px;
+    gap: 20px;
     border-radius: 2px;
     width: 100%;
 }
@@ -82,20 +78,19 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: nowrap;
-    gap: 40px;
-    padding: 20px;
+    gap: 10px;
     border-radius: 2px;
     width: 100%;
     height: 30vh;
     overflow-y: scroll;
+    cursor: n-resize;
 }
 
 .hourly .hours .hour {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     color: #fff;
     font-weight: 300;
     font-size: 1.2em;
@@ -108,30 +103,57 @@
     font-size: 2rem;
 }
 
-.hourly .hours .hour a {
+.hourly .hours .hour .a-text {
     text-decoration: none;
     color: #fff;
     font-size: 1.2em;
     font-weight: 300;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1024px) {
     .displayForecast {
         padding: 10px;
     }
 
     .days {
+        gap: 10px;
+        font-size: 1em;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 15px;
     }
 
     .days .day {
+        padding: 5px;
         width: 100%;
     }
 
+    .day p {
+        font-size: 1.5em !important;
+    }
+
+    .day .a-text {
+        font-size: 1.2em !important;
+    }
+
+    .day .astro {
+        gap: 5px;
+        padding: 5px;
+    }
+
     .hourly {
-        padding: 0px;
+        padding: 5px;
+    }
+
+    .hourly .hours {
+        gap: 5px;
+        padding: 5px;
+    }
+
+    .hourly .hours .hour {
+        gap: 10px;
+        padding: 5px;
+        font-size: 1em;
+        justify-content: space-evenly;
     }
 }

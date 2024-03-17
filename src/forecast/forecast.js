@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./forecast.css";
 
+//eslint-disable-next-line
 const Forecast = (data = { data }) => {
-	const [day, setDay] = useState(null);
-
-	const [display, setDisplay] = useState(data.data);
+	const [display] = useState(data.data);
 
 	if (!display) {
 		return null;
@@ -38,8 +37,8 @@ const Forecast = (data = { data }) => {
 		return display.forecast.forecastday[day].hour.map((hour) => {
 			return (
 				<div className="hour">
-					<a className="hourDisplay">{hour.time.slice(-5)}</a>
-					<a>{hour.temp_c}°C</a>
+					<p className="hourDisplay a-text">{hour.time.slice(-5)}</p>
+					<p className="a-text">{hour.temp_c}°C</p>
 					<img src={hour.condition.icon} alt={hour.condition.text} />
 				</div>
 			);
@@ -48,74 +47,80 @@ const Forecast = (data = { data }) => {
 
 	return (
 		<div className="displayForecast">
-			<a>Napoved za {display.location.name}:</a>
+			<p className="a-text">Napoved za {display.location.name}:</p>
 			<div className="days">
 				<div className="day">
-					<a>{getDayName(display.forecast.forecastday[0].date)}</a>
+					<p className="a-text">{getDayName(display.forecast.forecastday[0].date)}</p>
 					<img
 						src={display.forecast.forecastday[0].day.condition.icon}
 						alt={display.forecast.forecastday[0].day.condition.text}
 					/>
-					<a>{display.forecast.forecastday[0].day.avgtemp_c}°C</a>
-					<p>{display.forecast.forecastday[0].day.avgtemp_f}°F</p>
+					<p className="a-text">{display.forecast.forecastday[0].day.avgtemp_c}°C</p>
+					<p>
+						{display.forecast.forecastday[0].day.totalprecip_mm} mm
+					</p>
 					<div className="astro">
-						<a>
+						<p className="a-text">
 							Sončni vzhod ob:{" "}
 							{display.forecast.forecastday[0].astro.sunrise}
-						</a>
-						<a>
+						</p>
+						<p className="a-text">
 							Sončni zahod ob:{" "}
 							{display.forecast.forecastday[0].astro.sunset}
-						</a>
+						</p>
 					</div>
 					<div className="hourly">
-						<a>Vreme po urah:</a>
+						<p className="a-text">Vreme po urah:</p>
 						<div className="hours">{renderHourly(0)}</div>
 					</div>
 				</div>
 				<div className="day">
-					<a>{getDayName(display.forecast.forecastday[1].date)}</a>
+					<p className="a-text">{getDayName(display.forecast.forecastday[1].date)}</p>
 					<img
 						src={display.forecast.forecastday[1].day.condition.icon}
 						alt={display.forecast.forecastday[1].day.condition.text}
 					/>
-					<a>{display.forecast.forecastday[1].day.avgtemp_c}°C</a>
-					<p>{display.forecast.forecastday[1].day.avgtemp_f}°F</p>
+					<p className="a-text">{display.forecast.forecastday[1].day.avgtemp_c}°C</p>
+					<p>
+						{display.forecast.forecastday[1].day.totalprecip_mm} mm
+					</p>
 					<div className="astro">
-						<a>
+						<p className="a-text">
 							Sončni vzhod ob:{" "}
 							{display.forecast.forecastday[1].astro.sunrise}
-						</a>
-						<a>
+						</p>
+						<p className="a-text">
 							Sončni zahod ob:{" "}
 							{display.forecast.forecastday[1].astro.sunset}
-						</a>
+						</p>
 					</div>
 					<div className="hourly">
-						<a>Vreme po urah:</a>
+						<p className="a-text">Vreme po urah:</p>
 						<div className="hours">{renderHourly(1)}</div>
 					</div>
 				</div>
 				<div className="day">
-					<a>{getDayName(display.forecast.forecastday[2].date)}</a>
+					<p className="a-text">{getDayName(display.forecast.forecastday[2].date)}</p>
 					<img
 						src={display.forecast.forecastday[2].day.condition.icon}
 						alt={display.forecast.forecastday[2].day.condition.text}
 					/>
-					<a>{display.forecast.forecastday[2].day.avgtemp_c}°C</a>
-					<p>{display.forecast.forecastday[2].day.avgtemp_f}°F</p>
+					<p className="a-text">{display.forecast.forecastday[2].day.avgtemp_c}°C</p>
+					<p>
+						{display.forecast.forecastday[2].day.totalprecip_mm} mm
+					</p>
 					<div className="astro">
-						<a>
+						<p className="a-text">
 							Sončni vzhod ob:{" "}
 							{display.forecast.forecastday[2].astro.sunrise}
-						</a>
-						<a>
+						</p>
+						<p className="a-text">
 							Sončni zahod ob:{" "}
 							{display.forecast.forecastday[2].astro.sunset}
-						</a>
+						</p>
 					</div>
 					<div className="hourly">
-						<a>Vreme po urah:</a>
+						<p className="a-text">Vreme po urah:</p>
 						<div className="hours">{renderHourly(2)}</div>
 					</div>
 				</div>

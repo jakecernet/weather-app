@@ -1,20 +1,25 @@
 .display {
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 2rem;
-    padding: 4rem 0;
+    flex-direction: column;
     width: calc(100vw - var(--nav-width));
     height: 100vh;
 }
 
 .display h1 {
     color: #fff;
-    font-size: 4rem;
+    font-size: 2rem;
     font-weight: 300;
     text-align: center;
-    margin-bottom: 2rem;
+    padding: 2rem;
+}
+
+.vodoravno {
+    flex-direction: row;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 2rem;
+    padding: 4rem 0;
 }
 
 .location {
@@ -24,7 +29,7 @@
     text-align: center;
 }
 
-.location a {
+.location .a-text {
     font-size: 4rem;
     font-weight: 250;
 }
@@ -40,7 +45,7 @@
     justify-content: space-between;
 }
 
-.temp a {
+.temp .a-text {
     font-size: 3rem;
     font-weight: 250;
 }
@@ -67,10 +72,9 @@
     justify-content: space-evenly;
     align-items: flex-start;
     max-width: 40%;
-    overflow-x: scroll;
 }
 
-.remainingForecast a {
+.remainingForecast .a-text {
     font-size: 1.4rem;
     font-weight: 250;
     color: #fff;
@@ -82,8 +86,9 @@
     flex-direction: row;
     gap: 0.2rem;
     color: #fff;
-    overflow-x: scroll;
+    width: 100%;
     scrollbar-width: none;
+    overflow-x: scroll;
     scroll-snap-type: x mandatory;
 }
 
@@ -104,7 +109,7 @@
     cursor: pointer;
 }
 
-.remainingForecast .remainingHour a {
+.remainingForecast .remainingHour .a-text {
     font-size: 1.2rem;
     font-weight: 250;
     color: #fff;
@@ -127,7 +132,7 @@
     justify-content: space-between;
 }
 
-.astro a {
+.astro .a-text {
     font-size: 1.5rem;
     font-weight: 250;
 }
