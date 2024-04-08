@@ -144,42 +144,27 @@
 
 @media screen and (max-width: 1024px) {
     .display {
-        flex-direction: column;
         width: 100%;
         height: 100%;
-        padding: 0;
     }
 
-    .display h1 {
+    .display h1{
         display: none;
     }
 
+    .vodoravno {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 0;
+        margin: 0 auto;
+    }
+
     .remainingForecast {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-        height: 40%;
-        max-width: 100%;
+        max-width: 85vw;
+        overflow-x: scroll;
     }
 
-    .remainingForecast .scrollbar {
-        flex-direction: column;
-        gap: 0.2rem;
-        overflow-y: scroll;
-        overflow-x: hidden;
-        scroll-snap-type: y mandatory;
-        height: 40vh;
-    }
-
-    .remainingForecast .remainingHour {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        align-items: center;
-        gap: 1.4rem;
-        color: #fff;
-        padding: 1.2rem 1.8rem;
-        scroll-snap-align: start;
+    .remainingForecast .navodilo{
+        display: none;
     }
 }

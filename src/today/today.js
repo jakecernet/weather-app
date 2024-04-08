@@ -147,7 +147,7 @@ const Today = (data = { data }) => {
 							display.current.last_updated.slice(-5)
 						)}
 					</div>
-					<p style={{ color: "white"}}>
+					<p style={{ color: "white"}} className="navodilo">
 						(Pritisni Shift za vodoravno premikanje)
 					</p>
 				</div>
