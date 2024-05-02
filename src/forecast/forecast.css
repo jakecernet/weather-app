@@ -128,17 +128,17 @@
         width: 100%;
     }
 
-    .day p {
-        font-size: 1.5em !important;
-    }
-
     .day .a-text {
-        font-size: 1.2em !important;
+        font-size: 2em;
     }
 
     .day .astro {
         gap: 5px;
         padding: 5px;
+    }
+
+    .day .astro .a-text {
+        font-size: 1.5em !important;
     }
 
     .hourly {

@@ -142,7 +142,7 @@ nav ul li:hover {
   }
 
   .container {
-    height: fit-content;
+    height: max-content;
     width: 100vw;
     left: 0;
     right: 0;
