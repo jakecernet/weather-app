@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./current.css";
 
 const Current = (data = { data }) => {
-	const [display, setDisplay] = useState(data.data);
+	const [display] = useState(data.data);
 
 	if (!display) {
 		return null;
