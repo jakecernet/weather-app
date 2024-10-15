@@ -39,8 +39,8 @@ function Settings() {
 	function saveCity() {
 		const savedCity = document.getElementById("city").value;
 		if (savedCity !== "" && savedCity !== null && savedCity !== undefined) {
-			setCity(JSON.stringify(savedCity));
-		}		
+			setCity(savedCity);
+		}
 		if (
 			city !== "" &&
 			city !== null &&
@@ -62,7 +62,10 @@ function Settings() {
 
 	function clearList(event) {
 		event.preventDefault();
-		localStorage.clear();
+		localStorage.removeItem("cities");
+		setCities([]);
+		localStorage.removeItem("city");
+		alert("Vsa mesta so bila izbrisana!");
 		window.location.reload();
 	}
 
