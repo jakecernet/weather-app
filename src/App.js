@@ -21,6 +21,7 @@ import menu from "./buttons/menu.svg";
 
 function App() {
 	const [navbar, setNavClosed] = useState(true);
+	let cities = [];
 
 	function toggleNav() {
 		setNavClosed(!navbar);
@@ -82,9 +83,10 @@ function App() {
 
 			if (localStorage.getItem("city") == null) {
 				localStorage.setItem("city", city);
+				let cities = JSON.parse(localStorage.getItem("cities")) || [];
+				cities.push(city);
+				localStorage.setItem("cities", JSON.stringify(cities));
 			}
-
-			localStorage.setItem(city, city);
 		}
 	}
 
@@ -131,7 +133,7 @@ function App() {
 				{page === "today" && <Today data={data} />}
 				{page === "forecast" && <Forecast data={data} />}
 				{page === "feedback" && <Feedback />}
-				{page === "settings" && <Settings />}
+				{page === "settings" && <Settings cities={cities} />}
 			</div>
 		</div>
 	);

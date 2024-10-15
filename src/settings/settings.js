@@ -1,10 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./settings.css";
 
 function Settings() {
 	const [city, setCity] = useState("");
+	const [cities, setCities] = useState([]);
 
-	const cities = getCitiesFromLocalStorage().map((city) => {
+	useEffect(() => {
+		getCitiesFromLocalStorage();
+	}, []);
+
+	function getCitiesFromLocalStorage() {
+		if (localStorage.length === 0) {
+			return [];
+		} else {
+			for (let i = 0; i < localStorage.length; i++) {
+				if (localStorage.key(i) === "cities") {
+					const cities = JSON.parse(localStorage.getItem("cities"));
+					setCities(cities);
+				}
+			}
+		}
+		return cities;
+	}
+
+	const citiesDisplay = cities.map((city) => {
 		return (
 			<li
 				onClick={() => {
@@ -17,9 +36,11 @@ function Settings() {
 		);
 	});
 
-	function saveCity(event) {
-		event.preventDefault();
-		setCity(document.getElementById("city").value);
+	function saveCity() {
+		const savedCity = document.getElementById("city").value;
+		if (savedCity !== "" && savedCity !== null && savedCity !== undefined) {
+			setCity(JSON.stringify(savedCity));
+		}		
 		if (
 			city !== "" &&
 			city !== null &&
@@ -30,25 +51,15 @@ function Settings() {
 			city !== "    "
 		) {
 			console.log(city);
-			localStorage.setItem(city, city);
 			localStorage.setItem("city", city);
+			const updatedCities = [...cities, city];
+			setCities(updatedCities);
+			localStorage.setItem("cities", JSON.stringify(updatedCities));
 			alert("Mesto je bilo uspešno shranjeno!");
 			window.location.reload();
 		}
 	}
 
-	function getCitiesFromLocalStorage() {
-		const cities = [];
-		for (let i = 0; i < localStorage.length; i++) {
-			if (localStorage.key(i) !== "city") {
-				const key = localStorage.key(i);
-				cities.push(localStorage.getItem(key));
-			} else {
-				continue;
-			}
-		}
-		return cities;
-	}
 	function clearList(event) {
 		event.preventDefault();
 		localStorage.clear();
@@ -63,13 +74,18 @@ function Settings() {
 				<p>
 					Izberite mesto iz spodnjega seznama ali vnesite svoje mesto.
 				</p>
-				<ul>{cities}</ul>
+				<ul>{citiesDisplay}</ul>
 				<form>
 					<label>
 						<input
 							type="text"
 							placeholder="Vnesi mesto"
 							id="city"
+							onKeyDown={(event) => {
+								if (event.key === "Enter") {
+									saveCity();
+								}
+							}}
 						/>
 					</label>
 				</form>
