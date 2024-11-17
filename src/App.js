@@ -1,4 +1,10 @@
 import React, { useEffect, useState } from "react";
+import {
+	BrowserRouter as Router,
+	Route,
+	Routes,
+	NavLink,
+} from "react-router-dom";
 
 import api from "./api.json";
 import "./App.css";
@@ -21,6 +27,8 @@ import menu from "./buttons/menu.svg";
 
 function App() {
 	const [navbar, setNavClosed] = useState(true);
+	const [data, setData] = useState(null);
+	const output_city = localStorage.getItem("city");
 	let cities = [];
 
 	function toggleNav() {
@@ -28,8 +36,6 @@ function App() {
 		document.body.classList.toggle("small-nav");
 		document.body.classList.toggle("avg-nav");
 	}
-
-	const [page, setPage] = useState("home");
 
 	const setBackground = () => {
 		const body = document.body;
@@ -45,31 +51,26 @@ function App() {
 		body.style.backgroundAttachment = "fixed";
 	};
 
-	const [data, setData] = useState(null);
-
-	const output_city = localStorage.getItem("city");
-	console.log(output_city);
-
 	useEffect(() => {
-		async function fetchData() {
-			try {
-				const apiKey = "&key=" + api.name;
-				const response = await fetch(
-					"https://api.weatherapi.com/v1/forecast.json?q=" +
-						output_city +
-						"&days=3" +
-						apiKey
-				);
-				const receivedData = await response.json();
-				setData(receivedData);
-				console.log(receivedData);
-			} catch (error) {
-				console.log(error);
-			}
-		}
-
+		fetchCity();
 		fetchData();
 	}, [output_city]);
+
+	async function fetchData() {
+		try {
+			const apiKey = "&key=" + api.name;
+			const response = await fetch(
+				"https://api.weatherapi.com/v1/forecast.json?q=" +
+					output_city +
+					"&days=3" +
+					apiKey
+			);
+			const receivedData = await response.json();
+			setData(receivedData);
+		} catch (error) {
+			console.error(error);
+		}
+	}
 
 	async function fetchCity() {
 		if (output_city == null) {
@@ -94,47 +95,62 @@ function App() {
 		return <div>{<Loading />}</div>;
 	}
 
-	fetchCity();
-
 	return (
 		<div onLoad={setBackground()}>
-			<nav>
-				<ul>
-					<li onClick={() => setPage("home")}>
-						<img src={home} alt="home" />
-						{navbar ? null : <a>Trenutno</a>}
-					</li>
-					<li onClick={() => setPage("today")}>
-						<img src={today} alt="today" />
-						{navbar ? null : <a>Danes</a>}
-					</li>
-					<li onClick={() => setPage("forecast")}>
-						<img src={forecast} alt="forecast" />
-						{navbar ? null : <a>Napoved</a>}
-					</li>
-					<li onClick={() => setPage("settings")}>
-						<img src={settings} alt="settings" />
-						{navbar ? null : <p>Nastavitve</p>}
-					</li>
-				</ul>
-				<div className="bottom">
-					<li className="button" onClick={() => setPage("feedback")}>
-						<img src={feedback} alt="feedback" />
-						{navbar ? null : <a>Vaše mnenje</a>}
-					</li>
-					<li className="button" onClick={toggleNav}>
-						<img src={menu} alt="menu" />
-						{navbar ? null : <p>Skrči</p>}
-					</li>
+			<Router>
+				<nav>
+					<ul>
+						<NavLink to="/">
+							<li>
+								<img src={home} alt="home" />
+								{navbar ? null : <a>Trenutno</a>}
+							</li>
+						</NavLink>
+						<NavLink to="/today">
+							<li>
+								<img src={today} alt="today" />
+								{navbar ? null : <a>Danes</a>}
+							</li>
+						</NavLink>
+						<NavLink to="/forecast">
+							<li>
+								<img src={forecast} alt="forecast" />
+								{navbar ? null : <a>Napoved</a>}
+							</li>
+						</NavLink>
+						<NavLink to="/settings">
+							<li>
+								<img src={settings} alt="settings" />
+								{navbar ? null : <p>Nastavitve</p>}
+							</li>
+						</NavLink>
+					</ul>
+					<div className="bottom">
+						<NavLink to="/feedback">
+							<li className="button">
+								<img src={feedback} alt="feedback" />
+								{navbar ? null : <a>Vaše mnenje</a>}
+							</li>
+						</NavLink>
+						<li className="button" onClick={toggleNav}>
+							<img src={menu} alt="menu" />
+							{navbar ? null : <p>Skrči</p>}
+						</li>
+					</div>
+				</nav>
+				<div className="container">
+					<Routes>
+						<Route path="/" element={<Current data={data} />} />
+						<Route path="/today" element={<Today data={data} />} />
+						<Route
+							path="/forecast"
+							element={<Forecast data={data} />}
+						/>
+						<Route path="/settings" element={<Settings />} />
+						<Route path="/feedback" element={<Feedback />} />
+					</Routes>
 				</div>
-			</nav>
-			<div className="container">
-				{page === "home" && <Current data={data} />}
-				{page === "today" && <Today data={data} />}
-				{page === "forecast" && <Forecast data={data} />}
-				{page === "feedback" && <Feedback />}
-				{page === "settings" && <Settings cities={cities} />}
-			</div>
+			</Router>
 		</div>
 	);
 }
