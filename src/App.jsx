@@ -100,33 +100,33 @@ function App() {
 			<Router>
 				<nav>
 					<ul>
-						<NavLink to="/">
+						<NavLink to="/" style={{ textDecoration: "none" }}>
 							<li>
 								<img src={home} alt="home" />
 								{navbar ? null : <a>Trenutno</a>}
 							</li>
 						</NavLink>
-						<NavLink to="/today">
+						<NavLink to="/today" style={{ textDecoration: "none" }}>
 							<li>
 								<img src={today} alt="today" />
 								{navbar ? null : <a>Danes</a>}
 							</li>
 						</NavLink>
-						<NavLink to="/forecast">
+						<NavLink to="/forecast" style={{ textDecoration: "none" }}>
 							<li>
 								<img src={forecast} alt="forecast" />
 								{navbar ? null : <a>Napoved</a>}
 							</li>
 						</NavLink>
-						<NavLink to="/settings">
+						<NavLink to="/settings" style={{ textDecoration: "none" }}>
 							<li>
 								<img src={settings} alt="settings" />
-								{navbar ? null : <p>Nastavitve</p>}
+								{navbar ? null : <a>Nastavitve</a>}
 							</li>
 						</NavLink>
 					</ul>
 					<div className="bottom">
-						<NavLink to="/feedback">
+						<NavLink to="/feedback" style={{ textDecoration: "none" }}>
 							<li className="button">
 								<img src={feedback} alt="feedback" />
 								{navbar ? null : <a>Vaše mnenje</a>}
@@ -134,7 +134,7 @@ function App() {
 						</NavLink>
 						<li className="button" onClick={toggleNav}>
 							<img src={menu} alt="menu" />
-							{navbar ? null : <p>Skrči</p>}
+							{navbar ? null : <a>Skrči</a>}
 						</li>
 					</div>
 				</nav>
