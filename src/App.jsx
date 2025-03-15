@@ -10,8 +10,8 @@ import Feedback from "./feedback/feedback";
 import Settings from "./settings/settings";
 import Loading from "./loading/loading";
 
-import Day from "./images/day.jpg";
-import Night from "./images/night.jpg";
+import Day from "./images/day.webp";
+import Night from "./images/night.webp";
 
 import home from "./buttons/home.svg";
 import today from "./buttons/today.svg";
