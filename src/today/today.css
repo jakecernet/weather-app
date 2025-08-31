@@ -1,8 +1,14 @@
+:root {
+    --card-bg: rgba(20, 20, 20, 0.55);
+    --card-bg-hover: rgba(20, 20, 20, 0.8);
+    --radius: 14px;
+    --transition: 160ms ease;
+}
+
 .display {
     display: flex;
     flex-direction: column;
     width: calc(100vw - var(--nav-width));
-    height: 100vh;
 }
 
 .display h1 {
@@ -92,6 +98,11 @@
     scroll-snap-type: x mandatory;
 }
 
+.remainingForecast .scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 3px;
+}
+
 .remainingForecast .remainingHour {
     display: flex;
     flex-direction: column;
@@ -99,13 +110,17 @@
     align-items: center;
     gap: 1.4rem;
     color: #fff;
-    background: rgba(20, 20, 20, 0.473);
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    backdrop-filter: blur(8px);
     padding: 1.8rem;
     scroll-snap-align: center;
+    transition: var(--transition);
 }
 
 .remainingForecast .remainingHour:hover {
-    background: rgba(20, 20, 20, 0.8);
+    background: var(--card-bg-hover);
+    transform: translateY(-4px);
     cursor: pointer;
 }
 
@@ -142,6 +157,21 @@
     font-weight: 300;
 }
 
+/* fade-in utility */
+.fade-in {
+    animation: fade 0.5s ease both;
+}
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @media screen and (max-width: 1024px) {
     .display {
         width: 100%;
@@ -149,7 +179,7 @@
         padding-bottom: 20px;
     }
 
-    .display h1{
+    .display h1 {
         display: none;
     }
 
@@ -165,7 +195,7 @@
         overflow-x: scroll;
     }
 
-    .remainingForecast .navodilo{
+    .remainingForecast .navodilo {
         display: none;
     }
 }

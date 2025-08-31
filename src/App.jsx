@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback, lazy, Suspense } from "react";
 import { HashRouter as Router, Route, Routes, NavLink } from "react-router-dom";
 
 import api from "./api.json";
 import "./App.css";
-import Current from "./current/current";
-import Today from "./today/today";
-import Forecast from "./forecast/forecast";
-import Feedback from "./feedback/feedback";
-import Settings from "./settings/settings";
 import Loading from "./loading/loading";
 
 import Day from "./images/day.webp";
@@ -20,91 +15,108 @@ import settings from "./buttons/settings.svg";
 import feedback from "./buttons/feedback.svg";
 import menu from "./buttons/menu.svg";
 
+const Current = lazy(() => import("./current/current"));
+const Today = lazy(() => import("./today/today"));
+const Forecast = lazy(() => import("./forecast/forecast"));
+const Feedback = lazy(() => import("./feedback/feedback"));
+const Settings = lazy(() => import("./settings/settings"));
+
 function App() {
     const [navbar, setNavClosed] = useState(true);
     const [data, setData] = useState(null);
-    const output_city = localStorage.getItem("city");
-    let cities = [];
+    const [city, setCity] = useState(() => localStorage.getItem("city") || "");
 
-    function toggleNav() {
-        setNavClosed(!navbar);
+    const toggleNav = useCallback(() => {
+        setNavClosed((n) => !n);
         document.body.classList.toggle("small-nav");
         document.body.classList.toggle("avg-nav");
-    }
-
-    const setBackground = () => {
-        const body = document.body;
-        const currentHour = new Date().getHours();
-        if (currentHour >= 6 && currentHour < 19) {
-            body.style.backgroundImage = `url(${Day})`;
-        } else {
-            body.style.backgroundImage = `url(${Night})`;
-        }
-        body.style.backgroundSize = "cover";
-        body.style.backgroundPosition = "center";
-        body.style.backgroundRepeat = "no-repeat";
-        body.style.backgroundAttachment = "fixed";
-    };
+    }, []);
 
     useEffect(() => {
-        fetchCity();
-        fetchData();
-    }, [output_city]);
+        const apply = () => {
+            const currentHour = new Date().getHours();
+            const body = document.body;
+            body.style.backgroundImage =
+                currentHour >= 6 && currentHour < 19
+                    ? `url(${Day})`
+                    : `url(${Night})`;
+            body.style.backgroundSize = "cover";
+            body.style.backgroundPosition = "center";
+            body.style.backgroundRepeat = "no-repeat";
+            body.style.backgroundAttachment = "fixed";
+        };
+        apply();
+        const id = setInterval(apply, 1000 * 60 * 10);
+        return () => clearInterval(id);
+    }, []);
 
-    async function fetchData() {
-        try {
-            const apiKey = "&key=" + api.name;
-            const response = await fetch(
-                "https://api.weatherapi.com/v1/forecast.json?q=" +
-                    output_city +
-                    "&days=3" +
-                    apiKey
-            );
-            const receivedData = await response.json();
-            setData(receivedData);
-        } catch (error) {
-            console.error(error);
+    useEffect(() => {
+        if (!city) {
+            (async () => {
+                try {
+                    const ip = await (
+                        await fetch("https://api.ipify.org?format=json")
+                    ).json();
+                    const location = await (
+                        await fetch(`https://ipapi.co/${ip.ip}/json/`)
+                    ).json();
+                    if (location?.city) {
+                        setCity(location.city);
+                        const list = JSON.parse(
+                            localStorage.getItem("cities") || "[]"
+                        );
+                        if (!list.includes(location.city)) {
+                            localStorage.setItem(
+                                "cities",
+                                JSON.stringify([...list, location.city])
+                            );
+                        }
+                        localStorage.setItem("city", location.city);
+                    }
+                } catch {}
+            })();
         }
-    }
+    }, [city]);
 
-    async function fetchCity() {
-        if (output_city == null) {
-            const myip = await fetch("https://api.ipify.org?format=json");
-            const ip = await myip.json();
-            const mylocation = await fetch(
-                "https://ipapi.co/" + ip.ip + "/json/"
-            );
-            const location = await mylocation.json();
-            const city = location.city;
-
-            if (localStorage.getItem("city") == null) {
-                localStorage.setItem("city", city);
-                let cities = JSON.parse(localStorage.getItem("cities")) || [];
-                cities.push(city);
-                localStorage.setItem("cities", JSON.stringify(cities));
+    useEffect(() => {
+        if (!city) return;
+        const abort = new AbortController();
+        (async () => {
+            try {
+                const apiKey = "&key=" + api.name;
+                const res = await fetch(
+                    `https://api.weatherapi.com/v1/forecast.json?q=${encodeURIComponent(
+                        city
+                    )}&days=3${apiKey}`,
+                    { signal: abort.signal }
+                );
+                if (!res.ok) throw new Error("Network");
+                const json = await res.json();
+                setData(json);
+            } catch (e) {
+                if (e.name !== "AbortError") console.error(e);
             }
-        }
-    }
+        })();
+        return () => abort.abort();
+    }, [city]);
 
-    if (!data) {
-        return <div>{<Loading />}</div>;
-    }
+    if (!data) return <Loading />;
 
     return (
-        <div onLoad={setBackground()}>
+        <div>
             <Router>
-                <nav>
+                <nav aria-label="Primary">
                     <ul>
                         <NavLink to="/" style={{ textDecoration: "none" }}>
                             <li>
                                 <img src={home} alt="home" />
-                                {navbar ? null : <a>Trenutno</a>}
+                                {navbar ? null : <span>Trenutno</span>}
                             </li>
                         </NavLink>
                         <NavLink to="/today" style={{ textDecoration: "none" }}>
                             <li>
                                 <img src={today} alt="today" />
-                                {navbar ? null : <a>Danes</a>}
+                                {navbar ? null : <span>Danes</span>}
                             </li>
                         </NavLink>
                         <NavLink
@@ -113,7 +125,7 @@ function App() {
                         >
                             <li>
                                 <img src={forecast} alt="forecast" />
-                                {navbar ? null : <a>Napoved</a>}
+                                {navbar ? null : <span>Napoved</span>}
                             </li>
                         </NavLink>
                         <NavLink
@@ -122,7 +134,7 @@ function App() {
                         >
                             <li>
                                 <img src={settings} alt="settings" />
-                                {navbar ? null : <a>Nastavitve</a>}
+                                {navbar ? null : <span>Nastavitve</span>}
                             </li>
                         </NavLink>
                     </ul>
@@ -133,26 +145,40 @@ function App() {
                         >
                             <li className="button">
                                 <img src={feedback} alt="feedback" />
-                                {navbar ? null : <a>Vaše mnenje</a>}
+                                {navbar ? null : <span>Vaše mnenje</span>}
                             </li>
                         </NavLink>
-                        <li className="button" onClick={toggleNav}>
-                            <img src={menu} alt="menu" />
-                            {navbar ? null : <a>Skrči</a>}
-                        </li>
+                        <ul
+                            style={{ listStyle: "none", margin: 0, padding: 0 }}
+                        >
+                            <li className="button" onClick={toggleNav}>
+                                <img src={menu} alt="menu" />
+                                {navbar ? null : <span>Skrči</span>}
+                            </li>
+                        </ul>
                     </div>
                 </nav>
                 <div className="container">
-                    <Routes>
-                        <Route path="/" element={<Current data={data} />} />
-                        <Route path="/today" element={<Today data={data} />} />
-                        <Route
-                            path="/forecast"
-                            element={<Forecast data={data} />}
-                        />
-                        <Route path="/settings" element={<Settings />} />
-                        <Route path="/feedback" element={<Feedback />} />
-                    </Routes>
+                    <Suspense fallback={<Loading />}>
+                        <Routes>
+                            <Route path="/" element={<Current data={data} />} />
+                            <Route
+                                path="/today"
+                                element={<Today data={data} />}
+                            />
+                            <Route
+                                path="/forecast"
+                                element={<Forecast data={data} />}
+                            />
+                            <Route
+                                path="/settings"
+                                element={
+                                    <Settings city={city} setCity={setCity} />
+                                }
+                            />
+                            <Route path="/feedback" element={<Feedback />} />
+                        </Routes>
+                    </Suspense>
                 </div>
             </Router>
         </div>

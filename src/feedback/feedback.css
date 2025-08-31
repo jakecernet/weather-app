@@ -5,6 +5,7 @@
     height: 100vh;
     padding: 0 2rem;
     gap: 3rem;
+    max-width: 800px;
 }
 
 .feedback h1 {
@@ -62,22 +63,11 @@
 .survey ul li img {
     filter: invert(1);
     padding: 0.5rem;
+    transition: 160ms ease;
 }
 
-#star2:hover~li img,
-#star3:hover~li img,
-#star4:hover~li img,
-#star5:hover~li img {
-    filter: invert(86%) sepia(93%) saturate(3275%) hue-rotate(1deg) brightness(104%) contrast(101%);
-    scale: 1.2;
-}
-
-#star1:hover,
-#star2:hover,
-#star3:hover,
-#star4:hover,
-#star5:hover {
-    filter: invert(86%) sepia(93%) saturate(3275%) hue-rotate(1deg) brightness(104%) contrast(101%);
-    scale: 1.2;
-    cursor: pointer;
+.survey ul li:hover img {
+    filter: invert(86%) sepia(93%) saturate(3275%) hue-rotate(1deg)
+        brightness(104%) contrast(101%);
+    transform: scale(1.2);
 }

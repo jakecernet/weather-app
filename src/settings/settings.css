@@ -9,6 +9,7 @@
     height: calc(100vh - 7rem);
     padding: 0 2rem;
     gap: 1rem;
+    max-width: 900px;
 }
 
 .settings h1 {
@@ -45,9 +46,11 @@
     justify-content: flex-start;
     gap: 0.4rem;
     background: rgba(0, 0, 0, 0.404);
-    border-radius: 2px;
+    border-radius: var(--radius, 12px);
     overflow-y: scroll;
     height: 300px;
+    padding: 0.6rem;
+    backdrop-filter: blur(6px);
 }
 
 .city ul li {
@@ -58,23 +61,29 @@
     padding: 0.5rem;
 }
 
+.city ul li.active-city {
+    background: rgba(255, 255, 255, 0.12);
+}
+
 .city ul li:hover {
-    background-color: rgba(0, 0, 0, 0.404);
+    background: rgba(255, 255, 255, 0.08);
     cursor: pointer;
 }
 
 .city button {
-    background: none;
-    border: none;
+    background: linear-gradient(135deg, #090e2767, #1c1f2b42);
+    border-radius: 10px;
+    padding: 0.5rem 1.2rem;
     color: #fff;
-    font-size: 1.2rem;
-    font-weight: 300;
-    transition: all 0.3s ease;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    box-shadow: 0 4px 14px -4px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(6px);
 }
 
 .city button:hover {
-    cursor: pointer;
-    color: #fff;
+    opacity: 0.85;
 }
 
 .city form {
@@ -98,4 +107,9 @@
 
 .city form input:focus {
     outline: none;
+}
+
+.actions {
+    display: flex;
+    gap: 0.8rem;
 }
