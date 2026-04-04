@@ -32,6 +32,7 @@ nav {
     background: #111;
     transition: 0.3s;
     box-shadow: 0 0 18px -6px rgba(0, 0, 0, 0.6);
+    padding: 5px;
 }
 
 nav ul {
@@ -42,7 +43,6 @@ nav ul {
     list-style: none;
     overflow: hidden;
     gap: 10px;
-    padding: 10px;
 }
 
 nav ul li {
@@ -83,6 +83,7 @@ nav ul li:hover {
     width: var(--nav-width);
     background: #111;
     transition: 0.2s;
+    padding: 5px;
 }
 
 .bottom li {
